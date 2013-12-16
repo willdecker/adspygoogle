@@ -52,7 +52,11 @@ class Error(exceptions.Exception):
     def __init__(self, msg):
         self.msg = msg
     def __str__(self):
-        return "<Error : %s>" % self.msg
+        try:
+            msg_out = str(self.msg)
+        except:
+            msg_out = unicode(self.msg,errors='ignore')
+        return "<Error : %s>" % msg_out
     __repr__ = __str__
     def __call__(self):
         return (msg,)
